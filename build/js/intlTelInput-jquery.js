@@ -934,7 +934,15 @@
                 this.selectedFlag.setAttribute("title", title);
                 if (this.options.separateDialCode) {
                     var dialCode = this.selectedCountryData.dialCode ? "+".concat(this.selectedCountryData.dialCode) : "";
-                    this.selectedDialCode.innerHTML = dialCode;
+
+                    // REVISED: sygnal
+                    // To display country name without international portion 
+                    var countryName = this.selectedCountryData.name;
+                    countryName = countryName.split('(')[0];
+                    countryName = countryName.trim();                     
+                    // this.selectedDialCode.innerHTML = dialCode;
+                    this.selectedDialCode.innerHTML = countryName; // this.selectedCountryData.name;
+
                     // offsetWidth is zero if input is in a hidden container during initialisation
                     var selectedFlagWidth = this.selectedFlag.offsetWidth || this._getHiddenSelectedFlagWidth();
                     // add 6px of padding after the grey selected-dial-code box, as this is what we use in the css
